@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% load staticfiles %}
+        <script src="{% static "jquery.min.js" %}"></script>
+        <script src="{% static "js/show-and-hide.js" %}"></script>
+        <link href="/static/css/table.css" rel="stylesheet" type="text/css">
+
+        <h1 align="center">Less Machines Maintain</h1>
+    </head>
+    <body>
+        <table class="title" align="center" width="700" border="1" cellpadding="0" cellspacing="0">
+            <tr align="center" height="50">
+                <th class="no">NO</th><th class="host">SERVER</th><th class="name">HOSTNAME</th><th>OPERATE</th>
+            </tr>
+        </table>
+        {% for host in host_list %}
+        {% for key, value in hosts_info.items %}
+        {% if host == key %}
+        <table align="center" width="700" border="1" cellpadding="0" cellspacing="0">
+            <tr align="center" height="30">
+                <td class="no">{{ forloop.parentloop.counter }}</td>
+                <td class="host">{{ key }}</td>
+                <td class="name">{{ value }}</td>
+                {% if value != "Not Available" %}
+                <td><button onclick=showdetails("{{ forloop.parentloop.counter }}","{{ key }}")>details</button></td>
+                {% else %}
+                <td><button disabled="disabled">details</button></td>
+                {% endif %}
+            </tr>
+        </table>
+        <div id="{{ forloop.parentloop.counter }}">
+        </div>
+        {% endif %}
+        {% endfor %}
+        {% endfor %}
+        <hr>
+    </body>
+</html>
