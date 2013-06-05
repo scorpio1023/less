@@ -1,0 +1,56 @@
+RHEL5.7GA      kernel-2.6.18-274
+RHEL5.8GA      kernel-2.6.18-308
+RHEL5.9GA      kernel-2.6.18-348
+RHEL6.0GA      kernel-2.6.32-71
+RHEL6.1GA      kernel-2.6.32-131
+RHEL6.2GA      kernel-2.6.32-220
+RHEL6.3GA      kernel-2.6.32-279
+RHEL6.4GA      kernel-2.6.32-358
+
+RHEL5.8SS      kernel-2.6.18-305
+RHEL5.9SS2     kernel-2.6.18-342
+RHEL5.9SS3     kernel-2.6.18-343
+RHEL5.9SS4     kernel-2.6.18-344
+RHEL5.9SS5     kernel-2.6.18-345
+RHEL6.2SS3     kernel-2.6.32-211
+RHEL6.3SS2     kernel-2.6.32-269
+RHEL6.3SS3     kernel-2.6.32-270
+RHEL6.3SS4     kernel-2.6.32-272
+RHEL6.3SS5     kernel-2.6.32-274
+RHEL6.4SS2     kernel-2.6.32-348
+RHEL6.4SS3     kernel-2.6.32-353
+RHEL6.4SS4     kernel-2.6.32-355
+
+RHEL5.7RC      kernel-2.6.18-272
+RHEL5.8RC      kernel-2.6.18-307
+RHEL5.9RC      kernel-2.6.18-346
+RHEL6.0RC      kernel-2.6.32-71
+RHEL6.2RC      kernel-2.6.32-220
+RHEL6.3RC      kernel-2.6.32-276
+RHEL6.4RC      kernel-2.6.32-358
+
+RHEL5.7Beta    kernel-2.6.18-262
+RHEL5.8Beta    kernel-2.6.18-300
+RHEL5.9Beta    kernel-2.6.18-339
+RHEL6.0Beta    kernel-2.6.32-19
+RHEL6.0Beta2   kernel-2.6.32-37
+RHEL6.1Beta    kernel-2.6.32-122
+RHEL6.2Beta    kernel-2.6.32-202
+RHEL6.3Beta    kernel-2.6.32-262
+RHEL6.4Beta    kernel-2.6.32-343
+
+RHEL5.8Alpha   kernel-2.6.18-298
+RHEL5.9Alpha   kernel-2.6.18-337
+RHEL5SP7Alpha  kernel-2.6.18-259
+RHEL6.0Alpha2  kernel-2.6.31-27
+RHEL6.0Alpha3  kernel-2.6.31-38
+RHEL6.2Alpha   kernel-2.6.32-195
+RHEL6.3Alpha   kernel-2.6.32-257
+RHEL6.4Alpha   kernel-2.6.32-338
+RHEL7.0Alpha1  kernel-3.2.1
+RHEL7.0Alpha2  kernel-3.3.0
+RHEL7.0Alpha3  kernel-3.7.0
+
+Fedora-16      kernel-3.1.0
+Fedora-17      kernel-3.3.4
+

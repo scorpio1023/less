@@ -5,3 +5,7 @@ td.host,th.host { width: 23%;}
 td.name,th.name { width: 55%;}
 
 table.title { background-color: #D3D3D3;}
+
+tr.detail1 { background-color: #F0F8FF;}
+
+tr.detail2 { background-color: #F5F5DC;}
