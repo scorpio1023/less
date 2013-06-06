@@ -4,13 +4,10 @@ from django.http import HttpResponse
 import os
 import re
 import paramiko
-import threading
 
-hosts_info = {}
 pwd = os.path.dirname(os.path.abspath(__file__))
 
-def gethostinfo(host,lock):
-    global hosts_info
+def gethostinfo(request,host):
     ssh = paramiko.SSHClient()
     ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
     try:
@@ -19,44 +16,21 @@ def gethostinfo(host,lock):
         hostname = sout.read()
     except:
         hostname = "Not Available"
-    lock.acquire()
-    hosts_info[host] = hostname
-    lock.release()
     ssh.close()
     print host,"done"
-    
+
+    return HttpResponse(hostname)
+
 
 def myapp(request):
-    global hosts_info
     global pwd
     threads = []
-    lock = threading.RLock()
     filename = os.path.join(pwd,"hosts")
     f = open(filename)
     host_list = f.read().splitlines()
     f.close()
-    for host in host_list:
-        t = threading.Thread(target=gethostinfo, args=(host,lock))
-        threads.append(t)
-    for thd in threads:
-        thd.start()
-    for thd in threads:
-        thd.join()
-    return render_to_response("index.html",{"hosts_info":hosts_info, "host_list":host_list})
 
-
-def dealgrub(buf, flag):
-    if flag == "grub" :
-        keywd = "kernel"
-    else :
-        keywd = "linux"
-    kernel = []
-    klist = re.findall("^\s+|\t+%s.*?\n"%keywd, buf)
-    for line in klist :
-        alist = re.split("\s+|\t+", line)
-        kernel.append(alist[2].lstrip("/"))
-    kernel = list(set(kernel))
-    return kernel
+    return render_to_response("index.html",{"host_list":host_list})
 
 
 def anawho(w_list):
@@ -82,7 +56,6 @@ def anawho(w_list):
 
 
 def detail(request, host):
-    global hosts_info
     html = ""
     ssh = paramiko.SSHClient()
     ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
@@ -90,7 +63,13 @@ def detail(request, host):
     html += "<center><b>DETAILS</b></center>"
     html += "<table frame='hsides' width='700' align='center'>"
     # CURRENT
-    html += "<tr class='detail1'><td><b>CURRENT</b></td><td>" + hosts_info[host] + "</td></tr>"
+    html += "<tr class='detail1'><td><b>CURRENT</b></td><td>"
+    sin,sout,serr=ssh.exec_command("uname -n")
+    cur = sout.read()
+    if cur :
+        html += cur + "</td></tr>"
+    else :
+        html += "none</td></tr>"
     # BOOT
     html += "<tr class='detail2'><td><b>BOOT</b></td><td>"
     sin,sout,serr=ssh.exec_command("df | grep /boot | awk '{print $1}'")
@@ -104,7 +83,6 @@ def detail(request, host):
     html += "<tr class='detail1'><td><b>OSes</b></td><td>"
     sin,sout,serr=ssh.exec_command(com)
     oses = sout.read().splitlines()
-    print oses
     for line in oses :
         alist = re.split(":",line)
         if alist[1] == "" :
@@ -126,5 +104,6 @@ def detail(request, host):
     else :
         html += "No one</td></tr>"
     html += "</table>"
+    ssh.close()
 
     return HttpResponse(html)

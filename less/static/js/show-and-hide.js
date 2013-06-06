@@ -43,3 +43,19 @@ function hidethis(id)
 {
     document.getElementById(id).innerHTML = "";
 }
+
+function gethn()
+{
+    $("td.name").each(function(){
+        var host = $(this).attr("id");
+        $(this).load("gh/"+host, function(responseTxt,statusTxt,xhr){
+            if (xhr.readyState == 4 && xhr.status == 200)
+            {
+                if (responseTxt == "Not Available")
+                {
+                    $(this).next().replaceWith("<button disabled='disabled'>details</button>");
+                }
+            }
+        })
+    })
+}

@@ -18,4 +18,5 @@ urlpatterns = patterns('',
     url(r'^static/(?P<path>.*)','django.views.static.serve',{'document_root': settings.STATIC_URL}),
     url(r'^app/$',myapp),
     url(r'^app/(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})/$',detail),
+    url(r'^app/gh/(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})/$',gethostinfo),
 )
